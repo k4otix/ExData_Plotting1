@@ -3,9 +3,8 @@
 # Read the data file (already limited to data for Feb. 1-2, 2007)
 data <- read.csv("household_power_2days.txt", sep=";", stringsAsFactors=FALSE)
 
-# Convert Date & Time variables to Date/Time classes
-data$Date <- as.Date(data$Date, "%d/%m/%Y")
-data$Time <- strptime(paste(data$Date, data$Time), "%Y-%m-%d %H:%M:%S")
+# Convert Time column to POSIXlt/POSIXct using date from the Date column
+data$Time <- strptime(paste(data$Date, data$Time), "%d/%m/%Y %H:%M:%S")
 
 # Create the plot
 png(file="plot3.png", bg="transparent")  # png default size is 480x480
